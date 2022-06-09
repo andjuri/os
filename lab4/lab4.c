@@ -32,6 +32,14 @@ int main() {
 				continue; //poruka je vec ispisana
 			//* citaj dio datoteke i ispisi ga, dok procitaj vrati nesto */
 			
+			char proc[ BLOCKS * BLOCK_SIZE];
+			while(1)
+			{
+			   int citaj = procitaj(fd, tekst, broj_slova);
+				if(citaj <= 0) break;
+				else strcat(proc, tekst);
+			}
+			
 			
 		}
 		else if (naredba[0] == 'p') {
@@ -49,7 +57,7 @@ int main() {
 			sscanf(naredba, "%d", &koliko_puta);
 			for (i = 0; i < koliko_puta; i++)
 				zapisi(fd, tekst, strlen(tekst));
-                
+                memset(tekst, 0, sizeof(tekst));
 		}
 		else {
 			fprintf(stderr, "Kriva naredba\n");
